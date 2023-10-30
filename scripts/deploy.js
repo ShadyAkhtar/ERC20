@@ -23,7 +23,9 @@ async function main() {
 
   console.log("Deploying contracts with the account:", deployer.address);
 
-  const token = await hre.ethers.deployContract("MyToken");
+  const token = await hre.ethers.deployContract("MyToken", {
+    gasLimit: 1000000,
+  });
   // await token.waitForDeployment();
 
   console.log("Token address:", await token.getAddress());

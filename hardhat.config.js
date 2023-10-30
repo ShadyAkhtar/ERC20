@@ -17,44 +17,44 @@ const sharedNetworkConfig = {
   },
 };
 
-// task(
-//   "account",
-//   "returns nonce and balance for specified address on multiple networks"
-// )
-//   .addParam("address")
-//   .setAction(async (address) => {
-//     const web3Sepolia = createAlchemyWeb3(SEPOLIA_RPC);
-//     const web3Mumbai = createAlchemyWeb3(POLYGON_MUMBAI_RPC);
-//     const web3Mainnet = createAlchemyWeb3(MAINNET_RPC_URL);
-//     const web3Apothem = createAlchemyWeb3(APOTHEM_RPC_URL);
-//     // const web3Arb = createAlchemyWeb3(API_URL_ARBITRUM);
-//     // const web3Opt = createAlchemyWeb3(API_URL_OPTIMISM);
+task(
+  "account",
+  "returns nonce and balance for specified address on multiple networks"
+)
+  .addParam("address")
+  .setAction(async (address) => {
+    const web3Sepolia = createAlchemyWeb3(SEPOLIA_RPC);
+    const web3Mumbai = createAlchemyWeb3(POLYGON_MUMBAI_RPC);
+    const web3Mainnet = createAlchemyWeb3(MAINNET_RPC_URL);
+    const web3Apothem = createAlchemyWeb3(APOTHEM_RPC_URL);
+    // const web3Arb = createAlchemyWeb3(API_URL_ARBITRUM);
+    // const web3Opt = createAlchemyWeb3(API_URL_OPTIMISM);
 
-//     const networkIDArr = [
-//       "Ethereum sepolia:",
-//       "Polygon  Mumbai:",
-//       "XDC Mainnet:",
-//       "Apothem:",
-//     ];
-//     const providerArr = [web3Sepolia, web3Mumbai, web3Mainnet, web3Apothem];
-//     const resultArr = [];
+    const networkIDArr = [
+      "Ethereum sepolia:",
+      "Polygon  Mumbai:",
+      "XDC Mainnet:",
+      "Apothem:",
+    ];
+    const providerArr = [web3Sepolia, web3Mumbai, web3Mainnet, web3Apothem];
+    const resultArr = [];
 
-//     for (let i = 0; i < providerArr.length; i++) {
-//       const nonce = await providerArr[i].eth.getTransactionCount(
-//         address.address,
-//         "latest"
-//       );
-//       const balance = await providerArr[i].eth.getBalance(address.address);
-//       resultArr.push([
-//         networkIDArr[i],
-//         nonce,
-//         parseFloat(providerArr[i].utils.fromWei(balance, "ether")).toFixed(2) +
-//           "ETH",
-//       ]);
-//     }
-//     resultArr.unshift(["  |NETWORK|   |NONCE|   |BALANCE|  "]);
-//     console.log(resultArr);
-//   });
+    for (let i = 0; i < providerArr.length; i++) {
+      const nonce = await providerArr[i].eth.getTransactionCount(
+        address.address,
+        "latest"
+      );
+      const balance = await providerArr[i].eth.getBalance(address.address);
+      resultArr.push([
+        networkIDArr[i],
+        nonce,
+        parseFloat(providerArr[i].utils.fromWei(balance, "ether")).toFixed(2) +
+          "ETH",
+      ]);
+    }
+    resultArr.unshift(["  |NETWORK|   |NONCE|   |BALANCE|  "]);
+    console.log(resultArr);
+  });
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
